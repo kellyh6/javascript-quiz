@@ -19,27 +19,33 @@ var allQuestions = [{question:"What was Arnold's catchphrase?", choices: ['I kne
 					{question:"What real life singer voices The Magic School Bus rock star Molly Cule?", choices: ['Wynona Judd', 'Joan Jett', 'Cher', 'Sting'], correctAnswerIndex:0},
 					{question:"What phrase does Wanda Li repeat when she's stressed?", choices: ['Oh dear, oh dear, oh dear!', 'Not good, not good, not good!', 'What are we gonna do, what are we gonna do, what are we gonna do!?', 'Oh my Goodness! Where is Ms. Frizzle?'], correctAnswerIndex:2}]
 
-var questionNumber = 1;
+var questionNumber = 0;
 var score = 0;
 var time;
 var tickDown;
+
+var clickedAnswer;
+var corretAnswerIndex;
+var checkAnswerCounter = 0;
 // append question here
 $('#question').html(allQuestions[questionNumber].question);
 
 
-$('#lab1').html(allQuestions[questionNumber].choices[0]);
-$('#lab2').html(allQuestions[questionNumber].choices[1]);
-$('#lab3').html(allQuestions[questionNumber].choices[2]);
-$('#lab4').html(allQuestions[questionNumber].choices[3]);
+$('#lab1').html(allQuestions[0].choices[0]);
+$('#lab2').html(allQuestions[0].choices[1]);
+$('#lab3').html(allQuestions[0].choices[2]);
+$('#lab4').html(allQuestions[0].choices[3]);
 
 timer();
 
 
 
 $('#nextButton').on('click', function() {
+	event.preventDefault();
 	$("p").fadeOut(300);
 	$("label").fadeOut(300);
 	$("input").fadeOut(300); 
+	clickedAnswer = $('input[type=radio]:checked').next().html(); //
 	checkEndgame();
 	clearInterval(tickDown);
 	if (questionNumber === allQuestions.length) {
@@ -63,22 +69,25 @@ function timer() {
 function checkEndgame() {
 	questionNumber += 1;
 	if (questionNumber >= allQuestions.length) {
-		checkAnswer();
-		tallyScore();
+		clearInterval(tickDown);
 	} else {
+		checkAnswer();
 		nextQuestion();
 		timer();
 	}
 }			
 function checkAnswer(){
-	
+	console.log(clickedAnswer);
+	correctAnswerIndex = allQuestions[checkAnswerCounter].correctAnswerIndex;
+	correctAnswer = allQuestions[checkAnswerCounter].choices[correctAnswerIndex];
+	if (correctAnswer === clickedAnswer) {
+		tallyScore();
+	}
 };
 
 function tallyScore(){
-	if (checkAnswer()) {
-		score += 1 * time;
-		$('#scoreBoard').text(score);
-	}
+	score += 1 * time;
+	$('#scoreBoard').text(score);
 };
 
 function nextQuestion(){
