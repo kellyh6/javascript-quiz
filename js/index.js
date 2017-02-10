@@ -68,13 +68,10 @@ function timer() {
 }
 function checkEndgame() {
 	questionNumber += 1;
-	if (questionNumber >= allQuestions.length) {
-		clearInterval(tickDown);
-	} else {
-		checkAnswer();
-		nextQuestion();
-		timer();
-	}
+	clearInterval(tickDown);
+	checkAnswer();
+	nextQuestion();
+	timer();
 }			
 function checkAnswer(){
 	console.log(clickedAnswer);
