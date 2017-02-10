@@ -28,7 +28,7 @@ var clickedAnswer;
 var corretAnswerIndex;
 var checkAnswerCounter = 0;
 // append question here
-$('#question').html(allQuestions[questionNumber].question);
+$('#question').html(allQuestions[0].question);
 
 
 $('#lab1').html(allQuestions[0].choices[0]);
@@ -80,9 +80,12 @@ function checkAnswer(){
 	console.log(clickedAnswer);
 	correctAnswerIndex = allQuestions[checkAnswerCounter].correctAnswerIndex;
 	correctAnswer = allQuestions[checkAnswerCounter].choices[correctAnswerIndex];
-	if (correctAnswer === clickedAnswer) {
+	console.log(correctAnswer);
+
+	if (correctAnswer == clickedAnswer) {
 		tallyScore();
 	}
+	checkAnswerCounter += 1;
 };
 
 function tallyScore(){
