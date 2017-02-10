@@ -16,10 +16,11 @@ body{
 	height: 100px;
 	width: 300px;
 	position: absolute;
+	visibility: hidden;
 }
 h1{
 	text-align: right;
-	font-family: "Dust", Eraser, Serif;
+	font-family: 'Caveat Brush', cursive;
 	font-size: 50px;
 }
 p{
@@ -33,7 +34,7 @@ div{
 	height: 300px;
 	text-align: center;
 	background-repeat: no-repeat;
-	font-family: "Dust", Eraser, Serif;
+	font-family: 'Caveat Brush', cursive;
 	font-size: 30px;
 	/*margin-left: 8%;*/
 	border: 5px #905e26 solid;

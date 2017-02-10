@@ -80,9 +80,16 @@ function checkAnswer(){
 	console.log(clickedAnswer);
 	correctAnswerIndex = allQuestions[checkAnswerCounter].correctAnswerIndex;
 	correctAnswer = allQuestions[checkAnswerCounter].choices[correctAnswerIndex];
-	if (correctAnswer === clickedAnswer) {
+	if (correctAnswer === clickedAnswer) { 	// answer is right
 		tallyScore();
+		$('#feedbackBox').html('YOU GO IT RIGHT!').css('visibility', 'visible');
 	}
+	else{									// answer is wrong
+		$('#feedbackBox').html('SORRY! BETTER LUCK NEXT TIME!').css('visibility', 'visible');
+	}
+	setTimeout(function(){ 
+		$("#feedbackBox").css('visibility', 'hidden'); 
+	}, 1000);
 };
 
 function tallyScore(){
