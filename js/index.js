@@ -28,7 +28,7 @@ var clickedAnswer;
 var corretAnswerIndex;
 var checkAnswerCounter = 0;
 // append question here
-$('#question').html(allQuestions[questionNumber].question);
+$('#question').html(allQuestions[0].question);
 
 
 $('#lab1').html(allQuestions[0].choices[0]);
@@ -68,19 +68,17 @@ function timer() {
 }
 function checkEndgame() {
 	questionNumber += 1;
-	if (questionNumber >= allQuestions.length) {
-		clearInterval(tickDown);
-	} else {
-		checkAnswer();
-		nextQuestion();
-		timer();
-	}
+	clearInterval(tickDown);
+	checkAnswer();
+	nextQuestion();
+	timer();
 }			
 function checkAnswer(){
 	console.log(clickedAnswer);
 	correctAnswerIndex = allQuestions[checkAnswerCounter].correctAnswerIndex;
 	correctAnswer = allQuestions[checkAnswerCounter].choices[correctAnswerIndex];
 	if (correctAnswer === clickedAnswer) { 	// answer is right
+
 		tallyScore();
 		$('#feedbackBox').html('YOU GO IT RIGHT!').css('visibility', 'visible');
 	}
@@ -90,6 +88,7 @@ function checkAnswer(){
 	setTimeout(function(){ 
 		$("#feedbackBox").css('visibility', 'hidden'); 
 	}, 1000);
+	checkAnswerCounter += 1;
 };
 
 function tallyScore(){
